@@ -54,7 +54,7 @@
                             password: $("#password").val()
                         },
                         success: function(data) {
-                            if(data.success == "true") {
+                            if(data.success == true) {
                                $("#status").html(data.message); 
                             } else {
                                 $("#status").html("Failed to log in.");
