@@ -60,7 +60,7 @@ app.use(bodyParser.urlencoded({
 
 //set static resources
 app.use(express.static('assets'));
-app.use(express.static('signin'));
+app.use('sigin',express.static('signin'));
 
 // set secret variable
 app.set('secret', 'thisismysecret');
