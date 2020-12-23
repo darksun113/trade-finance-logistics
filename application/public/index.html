@@ -37,6 +37,12 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            var apitoken = $.cookie('apitoken');
+            if(apitoken == null) {
+                $("#status").html("Not logged in yet.");
+            } else {
+                $("#status").html("Login Successful");
+            }
             $("#submit").click(function() {
                     $.ajax({
                         type: "post",
@@ -56,6 +62,7 @@
                         success: function(data) {
                             if(data.success == true) {
                                $("#status").html(data.message); 
+                               $.cookie('apitoken',data.token);
                             } else {
                                 $("#status").html("Failed to log in.");
                             }
