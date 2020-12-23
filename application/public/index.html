@@ -54,7 +54,11 @@
                             password: $("#password").val()
                         },
                         success: function(data) {
-                            alert(data);
+                            if(data.success == "true") {
+                               $("#status").html(data.message); 
+                            } else {
+                                $("#status").html("Failed to log in.");
+                            }
                         }
                     });
             });
