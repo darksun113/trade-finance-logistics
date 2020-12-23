@@ -37,21 +37,24 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready({
-            $.ajax({
-                type: "post",
-                url: "/login",
-                beforeSend: function() {$("#status").html("Loging in...");},
-                timeout: 10000,
-                error: function(xhr, status, error) {
-                    alert("Error: " + xhr.status + " - " + error);
-                },
-                contentType: "application/x-www-form-urlencoded",
-                dataType: "json",
-                success: function(data) {
-                    alert(data);
+            $("#submit").click({
+                    $.ajax({
+                        type: "post",
+                        url: "/login",
+                        beforeSend: function() {$("#status").html("Loging in...");},
+                        timeout: 10000,
+                        error: function(xhr, status, error) {
+                            alert("Error: " + xhr.status + " - " + error);
+                        },
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: "json",
+                        success: function(data) {
+                            alert(data);
+                            });
+                        }
                     });
-                }
             });
+
 
         });  
       
