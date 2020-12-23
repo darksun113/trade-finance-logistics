@@ -116,6 +116,11 @@ function getErrorMessage(field) {
 ///////////////////////// REST ENDPOINTS START HERE ///////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+// Static pages
+app.get('', (req, res) => {
+    res.sendFile(__dirname + '/signin/index.html');
+});
+
 // Register and enroll user
 app.post('/login', async function(req, res) {
 	var username = req.body.username;
