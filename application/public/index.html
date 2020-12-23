@@ -35,6 +35,27 @@
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready({
+            $.ajax({
+                type: "post",
+                url: "/login",
+                beforeSend: function() {$("#status").html("Loging in...");},
+                timeout: 10000,
+                error: function(xhr, status, error) {
+                    alert("Error: " + xhr.status + " - " + error);
+                },
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                success: function(data) {
+                    alert(data);
+                    });
+                }
+            });
+
+        });  
+      
+    </script>
   </head>
   <body class="text-center">
     
@@ -54,11 +75,10 @@
     <label for="password" class="visually-hidden">Password</label>
     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
     <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
+      <label id="status">...
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="button">Sign in</button>
+    <button class="w-100 btn btn-lg btn-primary" type="button" id="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
   </form>
 </main>
