@@ -48,6 +48,11 @@
                         },
                         contentType: "application/x-www-form-urlencoded",
                         dataType: "json",
+                        data: {
+                            username: $("#username").val(),
+                            orgName: $("$orgname").val(),
+                            password: $("#password").val()
+                        },
                         success: function(data) {
                             alert(data);
                         }
