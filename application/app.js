@@ -58,6 +58,10 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
+//set static resources
+app.use(express.static('assets'));
+app.use(express.static('signin'));
+
 // set secret variable
 app.set('secret', 'thisismysecret');
 app.use(expressJWT({
@@ -115,11 +119,6 @@ function getErrorMessage(field) {
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////// REST ENDPOINTS START HERE ///////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-
-// Static pages
-app.get('', (req, res) => {
-    res.sendFile(__dirname + '/signin/index.html');
-});
 
 // Register and enroll user
 app.post('/login', async function(req, res) {
