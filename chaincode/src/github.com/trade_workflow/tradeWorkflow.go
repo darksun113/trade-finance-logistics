@@ -378,7 +378,7 @@ func (t *TradeWorkflowChaincode) issueLC(stub shim.ChaincodeStubInterface, creat
 	} else {
 		letterOfCredit.Id = args[1]
 		letterOfCredit.ExpirationDate = args[2]
-		letterOfCredit.Documents = args[3:]
+        letterOfCredit.Documents = args[3:] // Note: Should convert to bytes and put in the lc
 		letterOfCredit.Status = ISSUED
 		letterOfCreditBytes, err = json.Marshal(letterOfCredit)
 		if err != nil {
