@@ -8,7 +8,7 @@ if [ ${JWT:$JLEN:1} == "\"" ]
 then
 	JWT=${JWT:0:$JLEN}
 fi
-CC=$(curl -s -X POST http://localhost:4000/chaincode/acceptEL -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["2ks89j9"] }')
+CC=$(curl -s -X POST http://localhost:4000/chaincode/prepareShipment -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["2ks89j9"] }')
 JWT=$(echo $CC | jq '.success')
 if [ $JWT == true ]
 then
