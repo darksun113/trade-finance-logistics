@@ -1,3 +1,8 @@
+if [ $# -eq 3 ]
+then
+    echo "Using customized arguments"
+fi
+
 curl -s -X POST http://localhost:4000/login -H "content-type: application/x-www-form-urlencoded" -d 'username=Jim&orgName=importerorg' > userCred.json
 JWT=$(jq '.token' userCred.json)
 if [ $JWT == null ]
