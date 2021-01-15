@@ -16,3 +16,5 @@ then
 else
 	echo "FAILURE: "$(echo $CC | jq '.message')
 fi
+
+
