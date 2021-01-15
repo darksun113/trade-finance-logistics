@@ -1,8 +1,8 @@
 if [ $# -eq 0 ]
 then
-    entity = "exporter"
+    $entity = "exporter"
 else
-    entity = $1
+    $entity = $1
 fi
 
 JWT=$(jq '.token' userCred.json)
