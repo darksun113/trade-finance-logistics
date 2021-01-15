@@ -1,3 +1,10 @@
+if [ $# -gt 0 ]
+then
+    tradeid=$1
+else
+    tradeid="2ks89j9"
+fi
+
 JWT=$(jq '.token' userCred.json)
 if [ ${JWT:0:1} == "\"" ]
 then
@@ -8,7 +15,7 @@ if [ ${JWT:$JLEN:1} == "\"" ]
 then
 	JWT=${JWT:0:$JLEN}
 fi
-CC=$(curl -s -X POST http://localhost:4000/chaincode/acceptShipmentAndIssueBL -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["2ks89j9", "4xozOO9Ys1ol", "2020-12-14", "Houston Port", "Yantian Port"] }')
+CC=$(curl -s -X POST http://localhost:4000/chaincode/acceptShipmentAndIssueBL -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["'"$tradeid"'", "4xozOO9Ys1ol", "2020-12-14", "Houston Port", "Yantian Port"] }')
 JWT=$(echo $CC | jq '.success')
 if [ $JWT == true ]
 then
