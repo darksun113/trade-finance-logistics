@@ -1,7 +1,6 @@
-if [ $# -eq 0 ]
+entity="importer"
+if [ $# -gt 0 ]
 then
-    $entity="importer"
-else
     $entity=$1
 fi
 
