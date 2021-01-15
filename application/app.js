@@ -28,7 +28,7 @@ var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
 var cors = require('cors');
 var path = require('path');
-var uuidv1 = require('uuid/v1')
+const { v1: uuidv1 } = require('uuid');
 
 var Constants = require('../middleware/constants.js');
 var ClientUtils = require('../middleware/clientUtils.js');

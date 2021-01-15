@@ -644,6 +644,7 @@ func (t *TradeWorkflowChaincode) prepareShipment(stub shim.ChaincodeStubInterfac
 			fmt.Printf("Shipment for trade %s has already been prepared", args[0])
 			return shim.Success(nil)
 		} else {
+            fmt.Printf("Source: %s; ")
 			fmt.Printf("Shipment for trade %s has passed the preparation stage", args[0])
 			return shim.Error("Shipment past the preparation stage")
 		}
