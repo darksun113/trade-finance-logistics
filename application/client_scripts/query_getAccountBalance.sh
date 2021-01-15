@@ -1,6 +1,6 @@
 if [ $# -eq 0 ]
 then
-    $entity = "exporter"
+    $entity = "importer"
 else
     $entity = $1
 fi
