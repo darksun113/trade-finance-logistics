@@ -419,9 +419,9 @@ app.get('/uuid', async function(req, res) {
     logger.debug('==================== GET UUID ==================');
     try {
         var uuid1 = uuidv1();
-        res.json({sucess: true, uuid: uuid1});
+        res.json({success: true, uuid: uuid1});
     } catch (err) {
-        res.json({sucess: false, message: err.message});
+        res.json({success: false, message: err.message});
     }
 
 
