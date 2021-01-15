@@ -28,6 +28,7 @@ var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
 var cors = require('cors');
 var path = require('path');
+var uuidv1 = require('uuid/v1')
 
 var Constants = require('../middleware/constants.js');
 var ClientUtils = require('../middleware/clientUtils.js');
@@ -412,4 +413,16 @@ app.get('/chaincode/:fcn', async function(req, res) {
 		res.json({success: false, message: err.message});
 	});
 	ClientUtils.txEventsCleanup();
+});
+
+app.get('/uuid', async function(req, res) {
+    logger.debug('==================== GET UUID ==================');
+    try {
+        var uuid1 = uuidv1();
+        res.json({sucess: true, uuid: uuid1});
+    } catch (err) {
+        res.json({sucess: false, message: err.message});
+    }
+
+
 });
