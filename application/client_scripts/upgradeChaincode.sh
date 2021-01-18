@@ -8,7 +8,7 @@ if [ ${JWT:$JLEN:1} == "\"" ]
 then
 	JWT=${JWT:0:$JLEN}
 fi
-CC=$(curl -s -X POST http://localhost:4000/chaincode/upgrade -H "content-type: application/json" -H "authorization: Bearer $JWT"  -d '{ "ccpath": "github.com/trade_workflow", "ccversion": "v0", "args": [] }')
+CC=$(curl -s -X POST http://localhost:4000/chaincode/upgrade -H "content-type: application/json" -H "authorization: Bearer $JWT"  -d '{ "ccpath": "github.com/trade_workflow", "ccversion": "v2", "args": [] }')
 JWT=$(echo $CC | jq '.success')
 if [ $JWT == true ]
 then
