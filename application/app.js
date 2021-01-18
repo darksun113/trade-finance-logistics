@@ -419,6 +419,7 @@ app.get('/uuid', async function(req, res) {
     logger.debug('==================== GET UUID ==================');
     try {
         var uuid1 = short.generate();
+        logger.debug(uuid1);
         res.json({success: true, uuid: uuid1});
     } catch (err) {
         res.json({success: false, message: err.message});
