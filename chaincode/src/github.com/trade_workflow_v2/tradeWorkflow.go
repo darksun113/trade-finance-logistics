@@ -150,7 +150,10 @@ func (t *TradeWorkflowChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 	} else if function == "getELStatus" {
 		// Get the E/L status
 		return t.getELStatus(stub, creatorOrg, creatorCertIssuer, args)
-	} else if function == "getShipmentLocation" {
+	} else if function == "getBLStatus" {
+		// Get the B/L status
+		return t.getBLStatus(stub, creatorOrg, creatorCertIssuer, args)
+    } else if function == "getShipmentLocation" {
 		// Get the shipment location
 		return t.getShipmentLocation(stub, creatorOrg, creatorCertIssuer, args)
 	} else if function == "getBillOfLading" {
