@@ -15,7 +15,7 @@ if [ ${JWT:$JLEN:1} == "\"" ]
 then
 	JWT=${JWT:0:$JLEN}
 fi
-CC=$(curl -s -X GET http://localhost:4000/chaincode/getBLStatus -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["'"$tradeid"'"] }')
+CC=$(curl -s -X GET http://localhost:4000/chaincode/getBillOfLading -H "content-type: application/json" -H "authorization: Bearer $JWT" -d '{ "ccversion": "v0", "args": ["'"$tradeid"'"] }')
 JWT=$(echo $CC | jq '.success')
 if [ $JWT == true ]
 then
