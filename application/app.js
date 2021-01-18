@@ -28,7 +28,7 @@ var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
 var cors = require('cors');
 var path = require('path');
-const { v1: uuidv1 } = require('uuid');
+const short = require('short-uuid');
 
 var Constants = require('../middleware/constants.js');
 var ClientUtils = require('../middleware/clientUtils.js');
@@ -418,7 +418,7 @@ app.get('/chaincode/:fcn', async function(req, res) {
 app.get('/uuid', async function(req, res) {
     logger.debug('==================== GET UUID ==================');
     try {
-        var uuid1 = uuidv1();
+        var uuid1 = short.generate();
         res.json({success: true, uuid: uuid1});
     } catch (err) {
         res.json({success: false, message: err.message});
