@@ -52,4 +52,5 @@ type BillOfLading struct {
 	Beneficiary		string		`json:"beneficiary"`
 	SourcePort		string		`json:"sourcePort"`
 	DestinationPort		string		`json:"destinationPort"`
+    Status          string `json:"status"`
 }

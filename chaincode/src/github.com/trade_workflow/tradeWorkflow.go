@@ -1197,6 +1197,49 @@ func (t *TradeWorkflowChaincode) getELStatus(stub shim.ChaincodeStubInterface, c
 	return shim.Success([]byte(jsonResp))
 }
 
+// Get current state of a Bill of Landing
+func (t *TradeWorkflowChaincode) getBLStatus(stub shim.ChaincodeStubInterface, creatorOrg string, creatorCertIssuer string, args []string) pb.Response {
+	var blKey, jsonResp string
+	var billOfLading BillOfLading
+	var billOfLadingBytes []byte
+	var err error
+
+	// Access control: Only an Carrier or Exporter Org member can invoke this transaction
+	if !t.testMode && !(authenticateCarrierOrg(creatorOrg, creatorCertIssuer) || authenticateExporterOrg(creatorOrg, creatorCertIssuer)) {
+		return shim.Error("Caller not a member of Carrier or Exporter Org. Access denied.")
+	}
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1: <trade ID>")
+	}
+
+	// Get the state from the ledger
+	blKey, err = getBLKey(stub, args[0])
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	billOfLadingBytes, err = stub.GetState(blKey)
+	if err != nil {
+		jsonResp = "{\"Error\":\"Failed to get state for " + blKey + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	if len(billOfLadingBytes) == 0 {
+		jsonResp = "{\"Error\":\"No record found for " + blKey + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	// Unmarshal the JSON
+	err = json.Unmarshal(billOfLadingBytes, &billOfLading)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	jsonResp = "{\"Status\":\"" + billOfLading.Status + "\"}"
+	fmt.Printf("Query Response:%s\n", jsonResp)
+	return shim.Success([]byte(jsonResp))
+}
+
 // Get current location of a shipment
 func (t *TradeWorkflowChaincode) getShipmentLocation(stub shim.ChaincodeStubInterface, creatorOrg string, creatorCertIssuer string, args []string) pb.Response {
 	var slKey, jsonResp string
