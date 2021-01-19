@@ -37,6 +37,11 @@ func (t *TradeWorkflowChaincode) Init(stub shim.ChaincodeStubInterface) pb.Respo
 	_, args := stub.GetFunctionAndParameters()
 	var err error
 
+    // Upgrade Mode 1: leave ledger state as it was
+	if len(args) == 0 {
+		return shim.Success(nil)
+	}
+
 	if len(args) != 8 {
 		err = errors.New(fmt.Sprintf("Incorrect number of arguments. Expecting 8: {" +
 					     "Exporter, " +
