@@ -167,6 +167,9 @@ func (t *TradeWorkflowChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 	} else if function == "getAccountBalance" {
 		// Get account balance: Exporter/Importer
 		return t.getAccountBalance(stub, creatorOrg, creatorCertIssuer, args)
+    } else if function == "getPaymentStatus" {
+        // Get payment status
+        return t.getPaymentStatus(stub, creatorOrg, creatorCertIssuer, args)
 	/*} else if function == "delete" {
 		// Deletes an entity from its state
 		return t.delete(stub, creatorOrg, creatorCertIssuer, args)*/
@@ -1316,6 +1319,59 @@ func (t *TradeWorkflowChaincode) getBillOfLading(stub shim.ChaincodeStubInterfac
 	}
 	fmt.Printf("Query Response:%s\n", string(billOfLadingBytes))
 	return shim.Success(billOfLadingBytes)
+}
+
+// Get Bill of Lading
+func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterface, creatorOrg string, creatorCertIssuer string, args []string) pb.Response {
+	var tradeAgreement *TradeAgreement
+	var err error
+
+	// Access control: Only an Importer or Exporter or Carrier Org member can invoke this transaction
+	if !t.testMode && !(authenticateImporterOrg(creatorOrg, creatorCertIssuer) || authenticateExporterOrg(creatorOrg, creatorCertIssuer) || authenticateCarrierOrg(creatorOrg, creatorCertIssuer)) {
+		return shim.Error("Caller not a member of Importer or Exporter or Carrier Org. Access denied.")
+	}
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1: <trade ID>")
+	}
+
+		// Lookup trade agreement from the ledger
+	tradeKey, err = getTradeKey(stub, args[0])
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	tradeAgreementBytes, err = stub.GetState(tradeKey)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	if len(tradeAgreementBytes) == 0 {
+        jsonResp = "{\"Error\":\"No record found for trade ID " + args[0]+ "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	// Unmarshal the JSON
+	err = json.Unmarshal(tradeAgreementBytes, &tradeAgreement)
+	if err != nil {
+        jsonResp = "{\"Error\":\"Failed to convert bytes to Trade Agreement for trade id " + args[0] + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+    status = "not_paid"
+
+    if tradeAgreement.Payment == tradeAgreement.Amount {
+        status = "fullly_paid"
+    } else if tradeAgreement.Payment < tradeAgreement.Amount {
+        if tradeAgreement.Payment > 0 {
+            status = "partially_paid"
+        }
+    } else {
+        status = "invaid"
+    }
+
+    jsonResp = "{\"paid\":" + tradeAgreement.Payment + ", \"amount\":" + tradeAgreement.Amount + ", \"status\":\"" + status + "\"}"
+	fmt.Printf("Query Response:%s\n", jsonResp)
+	return shim.Success([]byte(jsonResp))
 }
 
 // Get current account balance for a given participant
