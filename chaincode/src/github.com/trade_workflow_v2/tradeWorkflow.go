@@ -768,7 +768,7 @@ func (t *TradeWorkflowChaincode) acceptShipmentAndIssueBL(stub shim.ChaincodeStu
 
 	// Create and record a B/L
 	billOfLading = &BillOfLading{args[1], args[2], string(exporterBytes), string(carrierBytes), tradeAgreement.DescriptionOfGoods,
-				     tradeAgreement.Amount, string(beneficiaryBytes), args[3], args[4]}
+				     tradeAgreement.Amount, string(beneficiaryBytes), args[3], args[4], "issued"}
 	billOfLadingBytes, err = json.Marshal(billOfLading)
 	if err != nil {
 		return shim.Error("Error marshaling bill of lading structure")
