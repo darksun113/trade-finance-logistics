@@ -155,7 +155,15 @@ function instantiateOrUpgradeChaincode(userOrg, chaincode_path, version, funcNam
 				request.fcn,
 				request.txId.getTransactionID()
 			));
-            console.log('Upgrading...');
+            console.log(util.format(
+				'Upgrading chaincode "%s" at path "%s" to version "%s" by passing args "%s" to method "%s" in transaction "%s"',
+				request.chaincodeId,
+				request.chaincodePath,
+				request.chaincodeVersion,
+				request.args,
+				request.fcn,
+				request.txId.getTransactionID()
+			));
 			// This process could take a while, so we set a very long timeout
 			return channel.sendUpgradeProposal(request, 300000);
 		} else {
