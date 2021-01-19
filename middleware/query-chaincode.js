@@ -78,7 +78,7 @@ function queryChaincode(userOrg, version, funcName, argList, userName, constants
 		} else {
 			console.log('Successfully enrolled user \'admin\'');
 		}
-
+        console.log('Chaincode ID:',Constants.CHAINCODE_ID);
 		// send query
 		var request = {
 			chaincodeId : Constants.CHAINCODE_ID,
