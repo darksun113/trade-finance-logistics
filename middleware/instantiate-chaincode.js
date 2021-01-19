@@ -155,10 +155,11 @@ function instantiateOrUpgradeChaincode(userOrg, chaincode_path, version, funcNam
 				request.fcn,
 				request.txId.getTransactionID()
 			));
-
+            console.log('Upgrading...');
 			// This process could take a while, so we set a very long timeout
 			return channel.sendUpgradeProposal(request, 300000);
 		} else {
+            console.log('Instantiating...');
 			// This process could take a while, so we set a very long timeout
 			return channel.sendInstantiateProposal(request, 300000);
 		}
