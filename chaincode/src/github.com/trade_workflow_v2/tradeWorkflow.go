@@ -1324,6 +1324,9 @@ func (t *TradeWorkflowChaincode) getBillOfLading(stub shim.ChaincodeStubInterfac
 // Get Bill of Lading
 func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterface, creatorOrg string, creatorCertIssuer string, args []string) pb.Response {
 	var tradeAgreement *TradeAgreement
+    var tradeKey string
+	var tradeAgreementBytes []byte
+    var jsonResp string
 	var err error
 
 	// Access control: Only an Importer or Exporter or Carrier Org member can invoke this transaction
@@ -1335,7 +1338,7 @@ func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterfa
 		return shim.Error("Incorrect number of arguments. Expecting 1: <trade ID>")
 	}
 
-		// Lookup trade agreement from the ledger
+    // Lookup trade agreement from the ledger
 	tradeKey, err = getTradeKey(stub, args[0])
 	if err != nil {
 		return shim.Error(err.Error())
