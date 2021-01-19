@@ -1326,7 +1326,7 @@ func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterfa
 	var tradeAgreement *TradeAgreement
     var tradeKey string
 	var tradeAgreementBytes []byte
-    var jsonResp string
+    var jsonResp, status string
 	var err error
 
 	// Access control: Only an Importer or Exporter or Carrier Org member can invoke this transaction
@@ -1372,7 +1372,7 @@ func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterfa
         status = "invaid"
     }
 
-    jsonResp = "{\"paid\":" + tradeAgreement.Payment + ", \"amount\":" + tradeAgreement.Amount + ", \"status\":\"" + status + "\"}"
+    jsonResp = "{\"paid\":" + string(tradeAgreement.Payment) + ", \"amount\":" + string(tradeAgreement.Amount) + ", \"status\":\"" + status + "\"}"
 	fmt.Printf("Query Response:%s\n", jsonResp)
 	return shim.Success([]byte(jsonResp))
 }
