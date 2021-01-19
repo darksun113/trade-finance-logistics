@@ -122,7 +122,7 @@ function invokeChaincode(userOrg, version, funcName, argList, userName, constant
 		tx_id = client.newTransactionID();
 		utils.setConfigSetting('E2E_TX_ID', tx_id.getTransactionID());
 		logger.debug('setConfigSetting("E2E_TX_ID") = %s', tx_id.getTransactionID());
-
+        console.log('Chaincode ID:',Constants.CHAINCODE_ID);
 		// send proposal to endorser
 		var request = {
 			chaincodeId : Constants.CHAINCODE_ID,
