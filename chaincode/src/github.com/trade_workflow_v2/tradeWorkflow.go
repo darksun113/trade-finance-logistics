@@ -1372,7 +1372,7 @@ func (t *TradeWorkflowChaincode) getPaymentStatus(stub shim.ChaincodeStubInterfa
         status = "invaid"
     }
 
-    jsonResp = "{\"paid\":" + string(tradeAgreement.Payment) + ", \"amount\":" + string(tradeAgreement.Amount) + ", \"status\":\"" + status + "\"}"
+    jsonResp = "{\"paid\":" + tradeAgreement.Payment.toString() + ", \"amount\":" + tradeAgreement.Amount.toString() + ", \"status\":\"" + status + "\"}"
 	fmt.Printf("Query Response:%s\n", jsonResp)
 	return shim.Success([]byte(jsonResp))
 }
