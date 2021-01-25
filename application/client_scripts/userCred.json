@@ -1,1 +1,1 @@
-{"success":false,"message":"fabric-ca request register failed with errors [[{\"code\":20,\"message\":\"Authorization failure\"}]]"}
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTE1Njk3NDYsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6ImltcG9ydGVyb3JnIiwiaWF0IjoxNjExNTY1NjA2fQ.HJ76OSYgmncBR5gAMfUu8JfR_9xp2Ne481QntMqiCaY","success":true,"message":"Login successful"}
