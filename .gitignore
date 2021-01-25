@@ -24,3 +24,4 @@ dist/*
 
 # Ignore NPM installation status file
 **/package-lock.json
+.vscode/launch.json
