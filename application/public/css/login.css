@@ -1,0 +1,221 @@
+body {
+    background-color: darkgray;
+}
+
+.main {
+    background-image: url("../img/background.jpg");
+    background-size: 1440px 810px;
+    margin: auto;
+    width: 1440px;
+    height: 810px;
+}
+
+#login {
+    position: absolute;
+    left: 910px;
+    top: 210px;
+    width: 350px;
+    height: 400px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 25px 0 rgba(60,126,255,0.20);
+    border-radius: 8px;
+    border-radius: 8px;
+}
+
+#login div {
+    margin-top: 76px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 60px;
+}
+
+#rolebox {
+    width: 90%;
+    margin:auto;
+    margin-bottom: 0px !important;
+}
+
+#box {
+    width: 90%;
+    margin:auto;
+    margin-bottom: 0px !important;
+    margin-top: 50px !important;
+}
+
+#select {
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background-image: url("../img/downarrow.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: lightgray;
+    font-family: "Heiti SC" !important;
+    appearance: none;
+    border-bottom-color: lightgray !important;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0 1em 0 0;
+    margin: auto;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    width: 78%;
+    padding-bottom: 8px;
+    padding-right: 14px;
+}
+
+#select::-ms-expand {
+    display: none;
+}
+
+#select:focus {
+    color: cornflowerblue;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#dropdown {
+    width: 260px;
+    height: 156px;
+    position: absolute;
+    top: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 0 !important;
+    background: #FFFFFF;
+    border: 1px solid #DCDEE3;
+    border-radius: 0px;
+    display: none;
+}
+
+#dropdown ul{
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0;
+    font-family: "Heiti SC" !important;
+}
+
+#dropdown ul li{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+#dropdown ul li:hover{
+    background-color: #F6F8F9;
+    color: #0056CC;
+}
+
+#dropdown ul li a {
+    margin-left: 12px;
+}
+
+input[type="text"] {
+    font-family: "Heiti SC" !important;
+    width: 80%;
+    border-bottom-color: lightgray !important;
+    border-bottom-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    width: 80%;
+    padding-bottom: 8px;
+    color: black;
+}
+
+input[type="text"]::placeholder {
+    color: lightgray;
+}
+
+input[type="text"]:focus {
+    color: cornflowerblue;
+    outline: none;
+}
+
+input[type="password"] {
+    font-family: "Heiti SC" !important;
+    width: 80%;
+    border-bottom-color: lightgray !important;
+    border-bottom-width: 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    width: 80%;
+    padding-bottom: 8px;
+    color: black;
+}
+
+input[type="password"]::placeholder {
+    color: lightgray;
+}
+input[type="password"]:focus {
+    color: cornflowerblue;
+    outline: none;
+}
+
+
+input[type="button"] {
+    width: 270px;
+    height: 46px;
+    background: #E5E5E5;
+    border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    font-family: "Heiti SC";
+    font-size: 16px;
+    color: #A0A0A0;
+    text-align: center;
+}
+
+#alertbox{
+    width: 433px;
+    height: 192px;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    background-color: white;
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.20);
+    border-radius: 4px;
+    border-radius: 4px;
+    display: none;
+}
+
+#alertcontent {
+    font-family: "Heiti SC";
+    margin: 32px;
+}
+
+#alertcontent h3 {
+    font-size: 20px;
+    color: rgba(0,0,0,0.85);
+    line-height: 24px;
+}
+#alertcontent img {
+    float: left;
+    margin-right: 10px;
+}
+#alertcontent p {
+    margin-left: 30px;
+}
+#returnpass{
+    color: #0069F9;
+}
+#dismissalert {
+    background: #0069F9;
+    border-radius: 4px;
+    border-radius: 4px;
+    width: 65px;
+    height: 32px;
+    outline: none;
+    border: none;
+    color: white;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}

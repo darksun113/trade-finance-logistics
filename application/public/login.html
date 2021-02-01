@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/login.css">
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/login.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div id="login">
+                    <div id="rolebox">
+                        <input type="text" autofocus id="select" placeholder="请选择角色">
+                        <input type="hidden" name="orgName" id="orgname" value="importerorg">
+                        <div id="dropdown">
+                            <ul>
+                                <li><a title="importerorg">进口方</a></li>
+                                <li><a title="exporterorg">出口方</a></li>
+                                <li><a title="carrierorg">承运方</a></li>
+                                <li><a title="regulatororg">监管方</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="box">
+                        <input type="text" id="username" name="username" placeholder="请输入您的账号">
+                    </div>
+
+                    <div id="box">
+                        <input type="password" id="password" placeholder="请输入您的密码">
+                    </div>
+
+                    <div id="box">
+                        <input type="button" id="submit" value="登录">
+                    </div>
+
+            </div>
+        </div>
+        <div id="alertbox">
+            <div id="alertcontent">
+                <img src="img/confirm.png">
+                <h3 id="alerttitle">注册成功</h3>
+                <p id="alertmessage">你的登录密码是<span id="returnpass">xxxxxx</span>，请妥善保存。</p>
+                <button id="dismissalert">确定</button>
+            </div>
+        </div>
+    </body>
+</html>
